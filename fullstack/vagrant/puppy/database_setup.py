@@ -38,7 +38,7 @@ class Shelter(Base):
      website = Column(String)
      def __repr__(self):
         return "<Shelter(name='%s', Location='%s, %s, %s %s', site='%s')>" % (
-                             self.name, self.address, self.city, self.stat, self.zipCode, self.website)
+                             self.name, self.address, self.city, self.state, self.zipCode, self.website)
 
 class Puppy(Base):
      __tablename__ = 'puppies'
