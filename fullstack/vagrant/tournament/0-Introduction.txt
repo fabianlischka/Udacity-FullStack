@@ -1,0 +1,5 @@
+# tournament project for the Udacity course "Intro to Relational Databases"
+# https://www.udacity.com/course/viewer#!/c-ud197
+
+# implement a database to store players and match results for a tournament, 
+# and implement the Swiss system to determine the pairings for the next round

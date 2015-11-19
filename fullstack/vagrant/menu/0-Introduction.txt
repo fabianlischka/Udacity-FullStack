@@ -1,0 +1,4 @@
+# restaurant menu database project for the Udacity course "Full Stack Foundations"
+# https://www.udacity.com/course/viewer#!/c-ud088/l-4325204629/m-4294324434
+
+# create a database of restaurants and menu items, using the SQLAlchemy ORM

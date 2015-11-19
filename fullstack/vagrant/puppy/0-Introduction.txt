@@ -1,0 +1,4 @@
+# exercise 1 project for the Udacity course "Full Stack Foundations"
+# https://www.udacity.com/course/viewer#!/c-ud088/l-4325204629/m-4294324434
+
+# create a db for shelters and puppies

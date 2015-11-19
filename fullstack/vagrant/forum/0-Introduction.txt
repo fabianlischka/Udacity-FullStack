@@ -1,0 +1,4 @@
+# baby project for the Udacity course "Intro to Relational Databases"
+# https://www.udacity.com/course/viewer#!/c-ud197
+
+# webserver and backend to create, store, display forum comments
