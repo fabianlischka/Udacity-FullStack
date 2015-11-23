@@ -1,4 +1,53 @@
 # exercise 1 project for the Udacity course "Full Stack Foundations"
 # https://www.udacity.com/course/viewer#!/c-ud088/l-4325204629/m-4294324434
 
-# create a db for shelters and puppies
+# create a db for shelters and puppies, and execute some queries
+
+# to run:
+# in the terminal:
+cd /Users/frl/Documents/Meins/Uni/Udacity/FullStack/fullstack/vagrant
+vagrant up
+vagrant ssh
+# if you want to start from scratch, delete puppy/puppies.db
+# in that shell to the vagrant VM:
+python
+# in python:
+python puppypopulator.py # if you've deleted puppies.db
+python puppyqueries.py
+
+
+# Exercise 1: create database_setup.py to define the objects and tables,
+# then populate using puppypopulator.py
+# Exercise 2: run some queries, see puppyqueries.py
+# Exercise 3: implement some Associations:
+#   one-to-one: add extra table, 1-1 relationship
+#   (see http://docs.sqlalchemy.org/en/latest/orm/basic_relationships.html#one-to-one ),
+#   and idealiter use migration tool to migrate
+#     specifically, add
+##        url to the puppy’s photo,
+##        a description about the puppy, and
+##        any special needs
+#   https://sqlalchemy-migrate.readthedocs.org/en/latest/
+#   (here might just recreate the db)
+#   many-to-many:
+#   see http://docs.sqlalchemy.org/en/latest/orm/basic_relationships.html#many-to-many
+
+# set up migration
+# 0: install sqlalchemy-migrate
+sudo pip install sqlalchemy-migrate
+# 1: create repo
+migrate create puppy_repository "PuppyProject"
+# 2: put db in repo
+python puppy_repository/manage.py version_control sqlite:///puppies.db puppy_repository
+# 2b: set repo and URL
+migrate manage manage.py --repository=puppy_repository --url=sqlite:///puppies.db
+# (3: optional: check current DB version)
+python puppy_repository/manage.py db_version sqlite:///puppies.db puppy_repository
+# (3b: easier if 1b has been done)
+python manage.py db_version
+# (4b: check highest version available)
+python manage.py version
+# 5. Add first migration script
+python manage.py script "Add profile table"
+# 6. Edit the created rump script:
+open puppy_repository/versions/001_Add_profile_table.py -a Atom
