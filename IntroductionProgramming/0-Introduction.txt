@@ -1,0 +1,8 @@
+# Udacity project to create little movie trailer website
+
+# to add movies, edit entertainment_center.py
+
+# run (using python 2, not 3)
+python entertainment_center.py
+
+# It'll create a (static) website and open it
