@@ -1,28 +1,26 @@
 -- part of the tournament project for the Udacity course "Intro to Relational Databases"
 -- https://www.udacity.com/course/viewer#!/c-ud197
+
 -- Table definitions for the tournament project.
---
+
 -- Put your SQL 'create table' statements in this file; also 'create view'
 -- statements if you choose to use it.
---
--- You can write comments in this file by starting them with two dashes, like
--- these lines here.
 
+DROP DATABASE IF EXISTS tournament;
 
--- if necessary:
--- drop database tournament;
+CREATE DATABASE tournament;
 
-create database tournament;
+\c tournament
 
-create table players (
-  name  text,
-  id    serial PRIMARY KEY
+CREATE TABLE players (
+  name  TEXT,
+  id    SERIAL PRIMARY KEY
 );
 
-create table games (
-  round   int NOT NULL,
-  winner  int REFERENCES players (id),
-  loser   int REFERENCES players (id),
+CREATE TABLE games (
+  round   INT NOT NULL,
+  winner  INT REFERENCES players (id),
+  loser   INT REFERENCES players (id),
   CONSTRAINT game_ident PRIMARY KEY(round, winner, loser),
   CONSTRAINT no_games_against_self CHECK (winner != loser)
 );
