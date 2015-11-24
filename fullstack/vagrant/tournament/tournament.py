@@ -48,12 +48,12 @@ def DBCur(dbname):
 def deleteMatches():
     """Remove all the match records from the database."""
     with DBCur("tournament") as cur:
-        cur.execute("DELETE FROM games;")
+        cur.execute("TRUNCATE games;")
 
 def deletePlayers():
     """Remove all the player records from the database."""
     with DBCur("tournament") as cur:
-        cur.execute("DELETE FROM players;")
+        cur.execute("TRUNCATE players;")
 
 
 def countPlayers():
