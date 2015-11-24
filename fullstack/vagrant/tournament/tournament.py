@@ -10,10 +10,16 @@ from contextlib import contextmanager
 from itertools import izip
 import psycopg2
 
+# given a sequence, returns a list of pairs of successive elements
+# list(ipairs(range(1,7)))  # returns [(1, 2), (3, 4), (5, 6)]
+# from this Stackoverflow answer, which contains lots more:
+# http://stackoverflow.com/questions/4628290/pairs-from-single-list
 def ipairs(seq):
     it = iter(seq)
     return izip(it, it)
 
+# adapted from examples in Python PEP 343, see
+# https://www.python.org/dev/peps/pep-0343/
 @contextmanager
 def DBCur(dbname):
     ## Database connection
@@ -33,7 +39,7 @@ def DBCur(dbname):
         conn.close()
 
 
-
+# unneccessary, thanks to contextmanager
 # def connect():
 #     """Connect to the PostgreSQL database.  Returns a database connection."""
 #     return psycopg2.connect("dbname=tournament")
@@ -113,4 +119,6 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    return [(a+b) for a,b in izip(*[iter( [(id,name) for id,name,w,m in playerStandings()] )]*2)]
+    return [(a+b) for a,b in ipairs(
+                [(id,name) for id,name,w,m in playerStandings()]
+            )]
