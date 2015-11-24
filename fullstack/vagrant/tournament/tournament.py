@@ -53,7 +53,7 @@ def deleteMatches():
 def deletePlayers():
     """Remove all the player records from the database."""
     with DBCur("tournament") as cur:
-        cur.execute("TRUNCATE players;")
+        cur.execute("TRUNCATE players CASCADE;")
 
 
 def countPlayers():
@@ -73,7 +73,9 @@ def registerPlayer(name):
       name: the player's full name (need not be unique).
     """
     with DBCur("tournament") as cur:
-        cur.execute("INSERT INTO players VALUES (%s);", (name,))
+        query = "INSERT INTO players (name) VALUES (%s);"
+        param = (name,)
+        cur.execute(query, param)
 
 def playerStandings():
     """Returns a list of the players and their win records, sorted by wins.
@@ -101,8 +103,9 @@ def reportMatch(winner, loser):
       loser:  the id number of the player who lost
     """
     with DBCur("tournament") as cur:
-        cur.execute("INSERT INTO games VALUES (%s, %s, %s);", (1, winner, loser))
-
+        query = "INSERT INTO games VALUES (%s, %s, %s);"
+        param = (1, winner, loser)
+        cur.execute(query, param)
 
 def swissPairings():
     """Returns a list of pairs of players for the next round of a match.
