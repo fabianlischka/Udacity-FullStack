@@ -1,0 +1,28 @@
+<html>
+
+<body>
+
+<h1>{{restaurant.name}}</h1>
+
+
+{% for grouper, list in items|groupby('course') %}
+<h3>{{grouper}}</h3>
+{% for i in list %}
+<div>
+
+<p><em>{{i.name}}</em></p>
+
+<p>{{i.description}}</p>
+
+<p>{{"$%.2f"|format(i.price)}} </p>
+
+</div>
+
+{% endfor %}
+{% endfor %}
+
+<!-- <p><a href='url_for("newMenuItem")}}'>Create a new menu item</a></p> -->
+
+</body>
+
+</html>
