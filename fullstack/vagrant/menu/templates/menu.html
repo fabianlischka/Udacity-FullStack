@@ -4,7 +4,7 @@
 
 <h1>{{restaurant.name}}</h1>
 
-
+<p>(Or <a href='{{url_for("rt_restaurants")}}'>back to all restaurants</a>)</p>
 {% for grouper, list in items|groupby('course') %}
 <h3>{{grouper}}</h3>
 {% for i in list %}
@@ -14,14 +14,19 @@
 
 <p>{{i.description}}</p>
 
-<p>{{"$%.2f"|format(i.price)}} </p>
-
+<p>{{"$%.2f"|format(i.price)}}</p>
+<p><a href='{{url_for("rt_editMenuItem", restaurant_id = restaurant.id,
+                                      menu_id = i.id)}}'>Edit</a>
+or <a href='{{url_for("rt_deleteMenuItem", restaurant_id = restaurant.id,
+                                      menu_id = i.id)}}'>Delete</a>?</p>
 </div>
 
 {% endfor %}
 {% endfor %}
 
-<!-- <p><a href='url_for("newMenuItem")}}'>Create a new menu item</a></p> -->
+<h2>
+<a href='{{url_for("rt_newMenuItem", restaurant_id = restaurant.id)}}'>Create a new menu item</a>
+</h2>
 
 </body>
 

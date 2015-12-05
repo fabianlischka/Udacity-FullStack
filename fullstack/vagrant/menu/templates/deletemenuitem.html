@@ -1,0 +1,24 @@
+<html>
+<body>
+<h1> Delete Menu Item </h1>
+
+
+  <h3>{{item.course}}</h3>
+  <div>
+
+  <p><em>{{item.name}}</em></p>
+
+  <p>{{item.description}}</p>
+
+  <p>{{"$%.2f"|format(item.price)}}</p>
+  </div>
+
+
+<form action="{{url_for('rt_deleteMenuItem', restaurant_id=item.restaurant_id, menu_id=item.id )}}" method = 'POST'>
+  <h2>Are you sure you want to delete this menu item?</h2>
+  <button type='submit' value='Delete'>DELETE</button> </form>
+</form>
+
+<p>Or <a href="{{url_for('rt_restaurants_id', restaurant_id=item.restaurant_id)}}">cancel and return to menu items</a>.</p>
+</body>
+</html>

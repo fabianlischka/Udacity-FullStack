@@ -39,10 +39,19 @@ class MenuItem(Base):
     # http://docs.sqlalchemy.org/en/rel_1_0/orm/mapped_attributes.html#simple-validators
     @validates('price')
     def validate_price(self, key, value):
-        if value[0]=='$':
-            return value[1:]
-        else:
+        if type(value) == type(3.14):
+            print "validate - float"
             return value
+        elif type(value) == type("3.14") or type(value) == type(u"3.14"):
+            print "validate - string"
+            if value[0]=='$':
+                return value[1:]
+            else:
+                return value
+        else:
+            print "validate - other"
+            print type(value)
+            return 99.99
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
